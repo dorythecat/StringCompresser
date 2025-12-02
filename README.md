@@ -6,4 +6,5 @@ such a way that it can be:
 - Reverted
 - URL-safe
 - As small as possible
+- Maintains case and special characters
 Let's see how far I can get with this! >:D
