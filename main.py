@@ -5,18 +5,18 @@ print(f"Length of the string: {len(in_str)}")
 
 def encode(s: str) -> str:
     v = int(s.encode('utf-8').hex(), 16)
-    enc = ''
+    enc: str = ''
     while v > 0:
-        v, r = divmod(v, 65536)
+        v, r = divmod(v, 1114111)
         enc = chr(r) + enc
     return enc
 
 def decode(s: str) -> str:
-    v = 0
+    v: int = 0
     for c in s:
-        v = v * 65536 + ord(c)
+        v = v * 1114111 + ord(c)
     r = str(hex(v))[2:]
-    return bytes.fromhex('0' * (len(r) % 2) + r).decode('utf-8')
+    return str(bytes.fromhex('0' * (len(r) % 2) + r).decode('utf-8'))
 
 print(f"Encoded string: {encode(in_str)}")
 print(f"Length of encoded string: {len(encode(in_str))}")

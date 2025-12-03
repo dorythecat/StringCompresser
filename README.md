@@ -48,7 +48,7 @@ supported!). So it's basically the perfect compromise in this weird tug-of-war.
 
 ## 2nd Iteration - 65536 is the new 2048
 After a bit of thinking and tinkering, I decided to retry using a high value as is
-65536, or 2^16, which is the maximum value that can be represented by 2 bytes, and
+65536, or 2^16, which is the maximum value that can be represented by 4 bytes, and
 thus, the maximum on the UTF-8 encoding scheme for a single character. I had thought
 this would not really work. Turns out, I was wrong. The only actual problem was that,
 previously, I had used 65535, which is 2^16 - 1, and thus, caused a few issues. But
