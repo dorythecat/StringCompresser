@@ -46,7 +46,7 @@ being too big (Whilst 65536 would theoretically be better, it would include
 certain characters that are not URL-safe, and most of the time, not even
 supported!). So it's basically the perfect compromise in this weird tug-of-war.
 
-## 2nd Iteration - 65536 is the new 2048
+## 1st-and-a-half Iteration - 65536 is the new 2048
 After a bit of thinking and tinkering, I decided to retry using a high value as is
 65536, or 2^16, which is the maximum value that can be represented by 4 bytes, and
 thus, the maximum on the UTF-8 encoding scheme for a single character. I had thought
@@ -55,3 +55,13 @@ previously, I had used 65535, which is 2^16 - 1, and thus, caused a few issues. 
 65536 works perfectly fine, and in fact, reduces the size of strings to half their size!
 (Technically it reduces by half only strings that have an even length, whilst it does 
 slightly less for odd-length strings, though it's often negligible).
+
+## 1st-and-three-quarters Iteration - 1114111 is the new 65536
+Turns out, there was an even better number that we can use with Python's char, which is
+the maximum value allowed for a Unicode code point, which is 1114111 (0x10FFFF). This means that
+now we have a further reduction, in which most strings will be 40% of their original size when
+encoded, and NO INFORMATION IS LOST :D
+
+Sure, this is not fully URL-safe, as some (if not most) browsers don't support most of the characters
+we're using, but, to be honest, that was only a light requirement, and I'm perfectly fine if I have
+to sacrifice it for a further 10% reduction in size. :3
