@@ -8,5 +8,52 @@
 </head>
 <body>
     <h1>String Compressor</h1>
+    <textarea id="inputString" placeholder="Enter string to compress..."></textarea>
+    <button id="compressButton">Compress</button>
+    <button id="decompressButton">Decompress</button>
+    <button id="resetButton">Reset</button>
+    <h2>Output:</h2>
+    <textarea id="outputString" readonly placeholder="Compressed string will appear here..."></textarea>
 </body>
+<script>
+    const inputString = document.getElementById('inputString');
+    const outputString = document.getElementById('outputString');
+
+    function encode(s) {
+        let v = BigInt(0);
+        for (let i = 0; i < s.length; i++) v = v * BigInt(256) + BigInt(s.charCodeAt(i));
+        let enc = '';
+        while (v > 0) {
+            enc = String.fromCodePoint(Number(v % BigInt(2048))) + enc;
+            v /= BigInt(2048);
+        } return enc;
+    }
+
+    function decode(s) {
+        let v = BigInt(0);
+        for (let i = 0; i < s.length; i++) v = v * BigInt(2048) + BigInt(s.codePointAt(i));
+        let dec = '';
+        while (v > 0) {
+            dec = String.fromCharCode(Number(v % BigInt(256))) + dec;
+            v /= BigInt(256);
+        } return dec;
+    }
+
+    document.getElementById('compressButton').onclick = () => {
+        const input = inputString.value;
+        if (input) outputString.value = encode(input);
+        else outputString.value = '';
+    };
+
+    document.getElementById('decompressButton').onclick = () => {
+        const input = inputString.value;
+        if (input) outputString.value = decode(input);
+        else outputString.value = '';
+    };
+
+    document.getElementById('resetButton').onclick = () => {
+        inputString.value = '';
+        outputString.value = '';
+    };
+</script>
 </html>
