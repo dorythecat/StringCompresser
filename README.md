@@ -65,3 +65,11 @@ encoded, and NO INFORMATION IS LOST :D
 Sure, this is not fully URL-safe, as some (if not most) browsers don't support most of the characters
 we're using, but, to be honest, that was only a light requirement, and I'm perfectly fine if I have
 to sacrifice it for a further 10% reduction in size. :3
+
+## 2nd Iteration - Web Client
+Welp, after checking it worked on Python, I decided to port this to a static website. Why, you might ask?
+Well, because I wanted to be able to show this off to be completely honest, and having a website where
+people can just try this out is way better than a python script. Bad news though, I had to bump it down
+to 2048 again, because otherwise we'd get some issues when copying text and ya-dah ya-dah.
+
+Still, not half bad! :D
