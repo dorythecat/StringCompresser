@@ -9,8 +9,8 @@
 <body>
     <h1>String Compressor</h1>
     <textarea id="inputString" placeholder="Enter string to compress..."></textarea>
-    <button id="compressButton">Compress</button>
-    <button id="decompressButton">Decompress</button>
+    <button id="compressButton" onclick="press()">Compress</button>
+    <button id="decompressButton" onclick="press(true)">Decompress</button>
     <button id="resetButton">Reset</button>
     <h2>Output:</h2>
     <textarea id="outputString" readonly placeholder="Compressed string will appear here..."></textarea>
@@ -39,17 +39,10 @@
         } return dec;
     }
 
-    document.getElementById('compressButton').onclick = () => {
+    function press(type = false) {
         const input = inputString.value;
-        if (input) outputString.value = encode(input);
-        else outputString.value = '';
-    };
-
-    document.getElementById('decompressButton').onclick = () => {
-        const input = inputString.value;
-        if (input) outputString.value = decode(input);
-        else outputString.value = '';
-    };
+        outputString.value = input ? (type ? decode(input) : encode(input)) : '';
+    }
 
     document.getElementById('resetButton').onclick = () => {
         inputString.value = '';
